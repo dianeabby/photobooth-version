@@ -1,0 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Mrs+Saint+Delafield&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* Enable Scrolling */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Photobooth Machine */
+.photobooth {
+    position: relative;
+    width: 700px;
+    height: 600px;
+    background: #222;
+    border-radius: 15px;
+    /*box-shadow: 0px 0px 30px rgba(255, 0, 0, 0.7);*/
+    box-shadow: 0px 0px 30px #532915;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Photobooth Sign */
+.photobooth-sign {
+    width: 100%;
+    background: #000;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    /*border-bottom: 3px solid white;*/
+    border-bottom: 3px solid #555;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Neon Glow Effect */
+.photobooth-sign span {
+    text-shadow:
+        0 0 5px #FF9F00,
+        0 0 10px #FF9D00,
+        0 0 15px #FF9D00,
+        0 0 20px #FF7600,
+        0 0 25px #FF7600,
+        0 0 30px #FF7600;
+}
+/*.photobooth-sign span {
+    text-shadow:
+        0 0 5px #00bfff,
+        0 0 10px #00bfff,
+        0 0 15px #00bfff,
+        0 0 20px #007acc,
+        0 0 25px #007acc,
+        0 0 30px #007acc;
+}*/
+
+/* Machine Body */
+.machine-body {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 70px);
+    margin-top: 70px;
+}
+
+/* Left Panel (Machine Body) */
+.left-panel {
+    width: 35%;
+    height: 100%;
+    background: #333;
+    border-right: 3px solid #555;
+    position: relative;
+}
+
+/* Right Side Curtain (Door) */
+.curtainContainer {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+/* Multiple Divs for Folds */
+.curtain {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.curtainFold {
+    flex: 1;
+    height: 100%;
+    background: linear-gradient(to right, #2E1503, #532915, #2E1503);
+    /*background: linear-gradient(to right, #b00, #f00, #b00);*/
+    border-right: 2px solid rgba(0, 0, 0, 0.3);
+    animation: swingCurtain 3s ease-in-out infinite alternate;
+}
+
+/* Swinging Animation */
+@keyframes swingCurtain {
+    0% {
+        transform: rotate(1deg);
+    }
+
+    100% {
+        transform: rotate(-1deg);
+    }
+}
+
+/* Coin Slot */
+.coin-slot {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 80px;
+    background: rgb(112, 112, 112);
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(9, 9, 0, 0.5);
+}
+
+/* Coin Entry Slot */
+.coin-entry {
+    width: 50px;
+    height: 10px;
+    background: #222;
+    border-radius: 5px;
+    box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Silver Coin */
+.coin {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #ddd, #aaa);
+    border-radius: 50%;
+    transition: opacity 0.3s, transform 0.2s;
+    border: 2px solid #888;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.4);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Coin Insertion Animation */
+.insertCoin {
+    animation: insertCoinAnim 0.8s forwards;
+}
+
+@keyframes insertCoinAnim {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-40px);
+        opacity: 0;
+    }
+}
+
+/* Curtain Opening Animation */
+.openCurtain {
+    animation: openCurtainAnim 2s ease forwards;
+}
+
+@keyframes openCurtainAnim {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Camera Page */
+.photobooth-camera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    height: 600px;
+    background: #222;
+    border-radius: 15px;
+    /*box-shadow: 0px 0px 30px rgba(255, 0, 0, 0.7);*/
+    box-shadow: 0px 0px 30px #532915;
+    overflow: hidden;
+}
+
+/* Camera Frame */
+.camera-frame {
+    position: relative;
+        /* Ensures flash aligns with the camera */
+        overflow: hidden;
+        /* Prevents flash from affecting other areas */
+        margin: auto;
+            /* Ensures equal left and right spacing */
+            padding-top: 15px;
+            /* Adds spacing at the top */
+}
+
+/* Webcam Video */
+#webcam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Capture Button */
+.capture-button {
+    width: 60px;
+    height: 60px;
+    /*background: red;*/
+    background: #532915;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.capture-button:hover {
+    transform: scale(1.1);
+}
+
+/* Countdown Timer */
+.countdown {
+    font-size: 50px;
+        font-weight: bold;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            /* 👈 Adds a dark glow */
+        /* Fully centers the countdown */
+        display: none;
+        /* Hidden by default */
+        z-index: 15;
+        /* Ensures it's above the camera feed */
+        pointer-events: none;
+        /* Prevents accidental interactions */
+}
+
+/* Photo Strip Page */
+.photostrip-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centers both sections */
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Reduced width to bring them closer */
+    margin: auto;
+    padding: 20px; /* Less padding for tighter spacing */
+    background: linear-gradient(to right, #777 50%, #222 50%);
+}
+
+#photo-strip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.photo-strip-image {
+    width: 250px;
+    height: auto;
+    border: 5px solid white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+#restart-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#restart-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Photostrip Page Styles */
+.photostrip-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two equal columns: controls on the left, photostrip on the right */
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    /* Keeps layout centered on large screens */
+}
+
+/* Falling Animation */
+.photostrip {
+    width: 220px;
+    /* Fixed width to keep it on the right */
+    background: white;
+    padding: 15px 15px 80px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 3px solid #555;
+    margin: auto;
+    transform: translateY(-100vh);
+    animation: dropPhotostrip 1s ease-out forwards;
+}
+
+/* Style for Custom Text */
+#custom-text {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    border: 2px solid #555;
+    border-radius: 5px;
+}
+
+/* Custom Text on Photostrip */
+.photostrip-text {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    word-wrap: break-word;
+    position: absolute;
+    bottom: 10px; /*moved text higher*/
+    width: 100%;
+    font-family: "Caveat";
+}
+
+/* Photostrip Falling Effect */
+@keyframes dropPhotostrip {
+    from {
+        opacity: 0;
+        transform: translateY(-100vh);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Individual Photos on the Photostrip */
+.photostrip img {
+    width: 95%;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    /*border: 5px solid white;*/
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    margin: auto;
+}
+
+.btn {
+    /*background: yellow;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;*/
+    display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: bold;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        width: 200px;
+        margin: 10px 0 0 0;
+        /* ← Set the same width for all buttons */
+        text-align: center;
+}
+
+.btn:hover {
+    /*background: gold;*/
+    /*background-color: #f0f0f0;*/
+    background: #532915;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Dark & Light Mode */
+body.white-mode {
+    background: white;
+}
+
+body.black-mode {
+    background: #222;
+}
+
+.color-options {
+display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 buttons per row */
+    gap: 12px;
+    /* Space between buttons */
+    justify-content: center;
+    align-items: center;
+    /* Ensures vertical alignment */
+    text-align: center;
+    /* Centers within the container */
+    margin: 15px auto;
+    /* Centers the whole block */
+    width: fit-content;
+    /* Shrinks to fit the buttons */
+}
+
+/* Ensure buttons are perfect circles */
+.color-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure buttons keep their circular shape */
+.color-btn::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* Assign colors */
+.color-btn.black {
+    background: black;
+}
+
+.color-btn.gray {
+    background: gray;
+}
+
+.color-btn.white {
+    background: white;
+    border: 2px solid black;
+}
+
+.color-btn.brown {
+    background: #986755;
+}
+
+.color-btn.red {
+    background: #fe7069;
+}
+
+
+.color-btn.yellow {
+    background: #f9f967;
+}
+
+.color-btn.green {
+    background: #cdef52;
+}
+
+.color-btn.blue {
+    background: #8197e5;
+}
+
+.color-btn.violet {
+    background: #b790b9;
+}
+
+.color-btn.pink {
+    background: #fbc7c3;
+}
+
+/* Glow Effect When Clicked */
+.color-btn:active,
+.color-btn.selected {
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+/* Filter Buttons */
+.filter-options {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    /* Space between buttons */
+    margin: 10px 0;
+}
+
+.filter-btn {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.filter-btn:hover {
+    background: lightgray;
+}
+
+.filter-btn.selected {
+    background: #532915;
+    color: white;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .photostrip-page {
+        flex-direction: column;
+        /* Stack controls above photostrip */
+        align-items: center;
+    }
+
+    .controls {
+        width: auto;
+    }
+}
+
+.flash-effect {
+    position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10;
+        transition: opacity 0.2s ease-out;
+        border-radius: 10px;
+        /* Ensures flash follows the shape of the camera */
+}
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    /* Change label text to black */
+}
