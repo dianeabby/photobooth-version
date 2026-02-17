@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Strip</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-mode">
+    <div class="photostrip-page">
+        <!-- Left Side - Controls -->
+        <div class="controls">
+            <label>Frame Color:</label>
+            <div class="color-options">
+                <button class="color-btn white" data-color="white"></button>
+                <button class="color-btn gray" data-color="gray"></button>
+                <button class="color-btn black" data-color="black"></button>
+                <button class="color-btn brown" data-color="brown"></button>
+                <button class="color-btn red" data-color="red"></button>
+                <button class="color-btn yellow" data-color="yellow"></button>
+                <button class="color-btn green" data-color="green"></button>
+                <button class="color-btn blue" data-color="blue"></button>
+                <button class="color-btn violet" data-color="violet"></button>
+                <button class="color-btn pink" data-color="pink"></button>
+            </div>
+
+            <!-- Filter Buttons -->
+            <label>Photo Filter:</label>
+            <div class="filter-options">
+                <button class="filter-btn selected" data-filter="none">Normal</button>
+                <button class="filter-btn" data-filter="grayscale(100%)">Black & White</button>
+                <button class="filter-btn" data-filter="sepia(100%)">Sepia Tone</button>
+            </div>
+
+            <!-- Customizable Text Input -->
+            <label for="custom-text">Text (max 15 chars):</label>
+            <input type="text" id="custom-text" maxlength="15" placeholder="Enter text...">
+
+
+            <button id="saveBtn" class="btn">Download</button>
+            <button id="retakeBtn" class="btn">Retake Photos</button>
+        </div>
+
+        <!-- Right Side - Photostrip -->
+        <div id="falling-photostrip" class="photostrip">
+            <!-- Photos will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="photostrip.js"></script>
+</body>
+
+</html>

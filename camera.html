@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Booth Camera</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="photobooth-camera">
+        <div class="camera-frame">
+            <video id="webcam" autoplay></video>
+            <div class="countdown" id="countdown">3</div>
+            <div class="flash-effect" id="flash"></div> <!-- Add this flash div -->
+        </div>
+        <button id="capture-btn" class="capture-button"></button>
+    </div>
+
+    <script src="camera.js"></script>
+
+</body>
+
+</html>
